@@ -4,29 +4,61 @@
   </div>
   <div class="card-body d-flex">
     <div class="w60">
-
     </div>
     <div class="w40">
-      <p-table [value]="indicacoes">
+      <p-table [value]="indicacoes" >
         <ng-template pTemplate="header">
           <tr>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>WhatsApp</th>
-            <th>Data de Nascimento</th>
-            <th>Gênero</th>
+            <th pSortableColumn="indicacao.nome">Nome<p-sortIcon field="nome"></p-sortIcon></th>
+            <th pSortableColumn="indicacao.email">Email<p-sortIcon field="email"></p-sortIcon></th>
+            <th pSortableColumn="indicacao.telefone">WhatsApp<p-sortIcon field="telefone"></p-sortIcon></th>
+            <th>Opções</th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-indicacao>
+        <ng-template pTemplate="body" let-i>
           <tr>
-            <td>{{ indicacao?.nome }}</td>
-            <td>{{ indicacao?.email }}</td>
-            <td>{{ indicacao?.telefone }}</td>
-            <td>{{ indicacao?.dataNascimento }}</td>
-            <td>{{ indicacao?.genero }}</td>
+            <td>{{ i?.indicacao?.nome }}</td>
+            <td>{{ i?.indicacao?.email }}</td>
+            <td>{{ i?.indicacao?.telefone }}</td>
+            <td>
+              <div class="float-right">
+                <a href="#" (click)="abrirDetalhe(i)"><i class="pi pi-pencil mr-2"></i></a>
+                <a href="#" (click)="onDelete(i.id)"><i class="pi pi-trash"></i></a>
+              </div>
+            </td>
           </tr>
         </ng-template>
       </p-table>
     </div>
   </div>
 </div>
+
+<p-dialog header="Detalhe" [(visible)]="display" (onHide)="clearForm()"	>
+  <div class="p-5 " style="width: 800px;">
+    <form [formGroup]="form">
+      <div class="form-group ">
+        <label >Nome</label>
+        <input type="text" class="form-control" formControlName="nome">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" class="form-control" formControlName="email">
+      </div>
+      <div class="form-group">
+        <label >Telefone</label>
+        <input type="number" class="form-control" formControlName="telefone">
+      </div>
+      <div class="form-group ui-fluid">
+        <div><label f>Gênero</label></div>
+        <p-dropdown [autoDisplayFirst]="false" [options]="generos" formControlName="genero"></p-dropdown>
+      </div>
+      <div class="form-group pt-1">
+        <div><label >data de Nascimento</label></div>
+        <p-calendar [showIcon]="true" formControlName="dataNascimento" dateFormat="dd/mm/yy" [stepMinute]="1" appendTo="body"></p-calendar>
+      </div>
+      <button type="submit" class="btn btn-primary" (click)="onSubmit()">Salvar</button>
+    </form>
+  </div>
+</p-dialog>
+
+

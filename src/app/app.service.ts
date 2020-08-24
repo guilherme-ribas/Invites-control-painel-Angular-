@@ -16,12 +16,20 @@ export class AppService {
   ) {
   }
 
-  getIndicacoes(){
+  getAll(){
     return this.http.get(this.link).pipe(take(1));
   }
 
-  saveIndicacao(indicacao: Indicacao){
+  save(indicacao: Indicacao){
     return this.http.post<Indicacao>(this.link, indicacao).pipe(take(1));
+  }
+
+  edit(id, indicacao: Indicacao){
+    return this.http.put<Indicacao>(`${this.link}/${id}`, indicacao.indicacao).pipe(take(1));
+  }
+
+  delete(id){
+    return this.http.delete(`${this.link}/${id}`).pipe(take(1));
   }
 
 
