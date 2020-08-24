@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  storage: 'https://biotrainig.firebaseio.com/indicações.json'
 };

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Biotraining": {
+    "BiotipoTraining": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/Biotraining",
+            "outputPath": "dist/BiotipoTraining",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -28,9 +28,16 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/primeicons/primeicons.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/chart.js/dist/Chart.js",
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -66,18 +73,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Biotraining:build"
+            "browserTarget": "BiotipoTraining:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "Biotraining:build:production"
+              "browserTarget": "BiotipoTraining:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Biotraining:build"
+            "browserTarget": "BiotipoTraining:build"
           }
         },
         "test": {
@@ -102,7 +109,6 @@
           "options": {
             "tsConfig": [
               "tsconfig.app.json",
-              "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
             "exclude": [
@@ -114,15 +120,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "Biotraining:serve"
+            "devServerTarget": "BiotipoTraining:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "Biotraining:serve:production"
+              "devServerTarget": "BiotipoTraining:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "Biotraining"
+  "defaultProject": "BiotipoTraining"
 }
