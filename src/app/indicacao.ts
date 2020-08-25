@@ -4,8 +4,7 @@ export interface Indicacao{
     email: string,
     nome: string,
     telefone: any,
-    dataNascimento: any,
-    genero: string
+    quemIndicou: any,
   }
 
 }

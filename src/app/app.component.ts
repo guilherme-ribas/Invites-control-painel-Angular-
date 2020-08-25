@@ -29,10 +29,10 @@ export class AppComponent implements OnInit{
       nome: null,
       email: null,
       telefone: null,
-      dataNascimento: null,
-      genero: null
+      quemIndicou: null,
     })
     this.service.getAll().subscribe((indicacoes: any) => {
+      console.log('indicacoes', indicacoes);
       this.indicacoes = Object.keys(indicacoes).map(obj => {
         return {id: obj, indicacao: indicacoes[obj]}
       });
@@ -46,21 +46,20 @@ export class AppComponent implements OnInit{
       nome: i.indicacao.nome,
       email: i.indicacao.email,
       telefone: i.indicacao.telefone,
-      dataNascimento: i.indicacao.dataNascimento,
-      genero: i.indicacao.genero
+      quemIndicou: i.indicacao.quemIndicou
     })
   }
 
-  clearForm(){
+  clearForm() {
     this.form.reset();
   }
 
-  onSubmit(){
+  onSubmit() {
     console.log(this.form.value)
     this.service.edit(this.indicacaoSelecionada.id, this.form.value).subscribe(r => console.log(r));
   }
 
-  onDelete(id){
+  onDelete(id) {
     this.service.delete(id).subscribe(r => console.log(r));
   }
 

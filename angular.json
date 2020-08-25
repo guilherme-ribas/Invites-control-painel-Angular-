@@ -130,6 +130,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "BiotipoTraining"
+    }
+  },
+  "defaultProject": "BiotipoTraining",
+  "cli": {
+    "analytics": false
+  }
 }
